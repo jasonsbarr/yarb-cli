@@ -1,6 +1,6 @@
 const { join } = require("path");
 const simpleGit = require("simple-git");
-const { cp, mkdir } = require("shelljs");
+const { mv } = require("shelljs");
 
 const templateUrl =
   "https://github.com/jasonsbarr/yet-another-react-boilerplate.git";
@@ -12,17 +12,16 @@ const getGit = () => {
   git = simpleGit(stagingPath);
 };
 
-const cloneTemplateRepo = () => {
+const cloneTemplateRepo = async () => {
   getGit();
-  git.clone(templateUrl, "template", ["--progress", "--verbose"]);
+  return await git.clone(templateUrl, "template");
 };
 
-const copyTemplateToProjectDir = async dirName => {
-  await mkdir("-p", `${workingDir}${dirName}`);
-  cp("-R", `${stagingPath}template/*`, `${workingDir}${dirName}`);
+const moveTemplateToProjectDir = async dirName => {
+  await mv(`${stagingPath}template/`, `${workingDir}/${dirName}/`);
 };
 
 module.exports = {
   cloneTemplateRepo,
-  copyTemplateToProjectDir
+  moveTemplateToProjectDir
 };

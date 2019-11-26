@@ -11,7 +11,7 @@ const {
 const { createStagingDir } = require("../lib/modules/staging");
 const {
   cloneTemplateRepo,
-  copyTemplateToProjectDir
+  moveTemplateToProjectDir
 } = require("../lib/modules/template");
 
 const command = "create <directory>";
@@ -36,7 +36,7 @@ const handleCreateStagingDir = async () => {
     await createStagingDir();
   } catch (err) {
     danger(err);
-    throw err;
+    // throw err;
   } finally {
     spinner.stop();
   }
@@ -51,7 +51,7 @@ const handleCloneTemplateRepo = async () => {
     await cloneTemplateRepo();
   } catch (err) {
     danger(err);
-    throw err;
+    // throw err;
   } finally {
     spinner.stop();
   }
@@ -59,14 +59,14 @@ const handleCloneTemplateRepo = async () => {
   return await null;
 };
 
-const handleCopyTemplateToProjectDir = async dir => {
+const handleMoveTemplateToProjectDir = async dir => {
   spinner.start();
 
   try {
-    await copyTemplateToProjectDir(dir);
+    await moveTemplateToProjectDir(dir);
   } catch (err) {
     danger(err);
-    throw err;
+    // throw err;
   } finally {
     spinner.stop;
   }
@@ -91,7 +91,7 @@ const exec = async argv => {
   await handleCloneTemplateRepo();
 
   info("Copying template into project directory...");
-  await handleCopyTemplateToProjectDir(argv.directory);
+  await handleMoveTemplateToProjectDir(argv.directory);
 };
 
 const handler = argv => {
@@ -102,7 +102,8 @@ const handler = argv => {
         .then(() => {
           log(figlet.textSync("Project created!"));
         })
-        .catch(err => console.error(err)),
+        .catch(err => danger(err))
+        .finally(() => spinner.stop()),
     1000
   );
 };
