@@ -3,6 +3,9 @@
   "version": "0.0.1-dev",
   "description": "CLI tool for Yet Another React Boilerplate",
   "main": "index.js",
+  "bin": {
+    "yarb": "bin/yarb"
+  },
   "scripts": {
     "test": "jest"
   },
@@ -27,6 +30,7 @@
     "inquirer": "^7.0.0",
     "ora": "^4.0.3",
     "shelljs": "^0.8.3",
+    "simple-git": "^1.126.0",
     "yargs": "^15.0.2"
   }
 }
