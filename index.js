@@ -3,8 +3,12 @@
 const { join } = require("path");
 const yargs = require("yargs");
 
-yargs.commandDir(join(__dirname, "lib", "commands")).help().argv;
+const app = yargs
+  .commandDir(join(__dirname, "src", "commands"))
+  .help();
 
-const run = () => {};
+const run = () => {
+  console.log(app.argv);
+};
 
 module.exports = run;
