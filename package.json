@@ -20,5 +20,13 @@
   "bugs": {
     "url": "https://github.com/jasonsbarr/yarb-cli/issues"
   },
-  "homepage": "https://github.com/jasonsbarr/yarb-cli#readme"
+  "homepage": "https://github.com/jasonsbarr/yarb-cli#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "figlet": "^1.2.4",
+    "inquirer": "^7.0.0",
+    "ora": "^4.0.3",
+    "shelljs": "^0.8.3",
+    "yargs": "^15.0.2"
+  }
 }
