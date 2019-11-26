@@ -24,17 +24,10 @@ const builder = {
   }
 };
 
-const exec = async argv => {
-  const projName = argv.name || argv.directory;
-  const initVersion = argv.initial || "1.0.0";
+const spinner = ora();
 
-  clear();
-  notice(figlet.textSync("YARB-CLI"));
-  log(
-    `Creating ${projName} with initial version ${initVersion} in ${argv.directory}...`
-  );
-
-  const spinner = ora();
+const handleCreateStagingDir = async () => {
+  spinner.start();
 
   try {
     await createStagingDir();
@@ -45,8 +38,10 @@ const exec = async argv => {
     spinner.stop();
   }
 
-  log("Getting template repository...");
+  return await null;
+};
 
+const handleCloneTemplateRepo = async () => {
   spinner.start();
 
   try {
@@ -57,6 +52,25 @@ const exec = async argv => {
   } finally {
     spinner.stop();
   }
+
+  return await null;
+};
+
+const exec = async argv => {
+  const projName = argv.name || argv.directory;
+  const initVersion = argv.initial || "1.0.0";
+
+  clear();
+  notice(figlet.textSync("YARB-CLI"));
+  log(
+    `Creating ${projName} with initial version ${initVersion} in ${argv.directory}...`
+  );
+
+  info("Creating temp directory for staging...");
+  await handleCreateStagingDir();
+
+  info("Getting template repository...");
+  await handleCloneTemplateRepo();
 };
 
 const handler = argv => {
@@ -65,7 +79,7 @@ const handler = argv => {
     () =>
       exec(argv)
         .then(() => {
-          info(figlet.textSync("Project created!"));
+          log(figlet.textSync("Project created!"));
         })
         .catch(err => console.error(err)),
     1000
