@@ -1,19 +1,16 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
-  "parserOptions": {
-    "ecmaVersion": 2019,
-    "sourceType": "script"
-  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "prettier"
+  ],
   "rules": {
     "prettier/prettier": "warn"
   },
-  "plugins": ["prettier"],
+  "plugins": ["node", "prettier"],
   "env": {
     "es6": true,
     "jest": true,
     "node": true
-  },
-  "ecmaFeatures": {
-    "impliedStrict": true
   }
 }
