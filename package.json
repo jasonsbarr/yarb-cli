@@ -1,0 +1,24 @@
+{
+  "name": "yarb-cli",
+  "version": "0.0.1-dev",
+  "description": "CLI tool for Yet Another React Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonsbarr/yarb-cli.git"
+  },
+  "keywords": [
+    "React",
+    "CLI",
+    "boilerplate"
+  ],
+  "author": "Jason Barr <me@jasonbarr.dev>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonsbarr/yarb-cli/issues"
+  },
+  "homepage": "https://github.com/jasonsbarr/yarb-cli#readme"
+}
