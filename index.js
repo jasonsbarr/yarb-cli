@@ -8,7 +8,7 @@ const app = yargs
   .help();
 
 const run = () => {
-  console.log(app.argv);
+  app.argv;
 };
 
 module.exports = run;
