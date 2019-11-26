@@ -1,0 +1,15 @@
+{
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "script"
+  },
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "ecmaFeatures": {
+    "impliedStrict": true
+  }
+}
