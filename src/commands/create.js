@@ -9,7 +9,10 @@ const {
   danger
 } = require("../lib/utils/color-logs");
 const { createStagingDir } = require("../lib/modules/staging");
-const { cloneTemplateRepo } = require("../lib/modules/template");
+const {
+  cloneTemplateRepo,
+  copyTemplateToProjectDir
+} = require("../lib/modules/template");
 
 const command = "create <directory>";
 const describe = "Creates new YARB project in <directory>";
@@ -56,6 +59,21 @@ const handleCloneTemplateRepo = async () => {
   return await null;
 };
 
+const handleCopyTemplateToProjectDir = async dir => {
+  spinner.start();
+
+  try {
+    await copyTemplateToProjectDir(dir);
+  } catch (err) {
+    danger(err);
+    throw err;
+  } finally {
+    spinner.stop;
+  }
+
+  return await null;
+};
+
 const exec = async argv => {
   const projName = argv.name || argv.directory;
   const initVersion = argv.initial || "1.0.0";
@@ -71,6 +89,9 @@ const exec = async argv => {
 
   info("Getting template repository...");
   await handleCloneTemplateRepo();
+
+  info("Copying template into project directory...");
+  await handleCopyTemplateToProjectDir(argv.directory);
 };
 
 const handler = argv => {
