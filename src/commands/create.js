@@ -8,14 +8,16 @@ const builder = {
     describe: "Optional project name (defaults to directory name)"
   },
 
-  version: {
-    alias: "v",
+  initial: {
     describe: "Optional initial version (defaults to 1.0.0)"
   }
 };
 
+const handler = () => {};
+
 module.exports = {
   command,
   describe,
-  builder
+  builder,
+  handler
 };
