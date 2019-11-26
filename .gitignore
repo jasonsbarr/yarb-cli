@@ -63,3 +63,6 @@ typings/
 # editor-specific config
 .vscode
 .idea
+
+# temporary directory
+staging
