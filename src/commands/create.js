@@ -1,7 +1,9 @@
 "use strict";
+const { join } = require("path");
 const figlet = require("figlet");
 const clear = require("clear");
 const ora = require("ora");
+const { rm } = require("shelljs");
 const {
   log,
   info,
@@ -103,7 +105,10 @@ const handler = argv => {
           log(figlet.textSync("Project created!"));
         })
         .catch(err => danger(err))
-        .finally(() => spinner.stop()),
+        .finally(() => {
+          spinner.stop();
+          rm("-rf", join(__dirname, "../../staging/"));
+        }),
     1000
   );
 };
