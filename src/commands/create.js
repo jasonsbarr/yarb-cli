@@ -45,7 +45,6 @@ const builder = {
   },
 
   yarn: {
-    alias: "useyarn",
     describe: "Use Yarn package manager instead of NPM"
   }
 };
