@@ -1,20 +1,9 @@
 "use strict";
 const { join } = require("path");
 const figlet = require("figlet");
-const clear = require("clear");
-const ora = require("ora");
 const { rm } = require("shelljs");
-const {
-  log,
-  info,
-  notice,
-  danger
-} = require("../lib/utils/color-logs");
-const { createStagingDir } = require("../lib/modules/staging");
-const {
-  cloneTemplateRepo,
-  moveTemplateToProjectDir
-} = require("../lib/modules/template");
+const init = require("../lib/scripts/init");
+const { log, info, danger } = require("../lib/utils/color-logs");
 
 const command = "create <directory>";
 const describe = "Creates new YARB project in <directory>";
@@ -26,87 +15,51 @@ const builder = {
 
   initial: {
     describe: "Optional initial version (defaults to 1.0.0)"
+  },
+
+  description: {
+    alias: "d",
+    describe:
+      "Optional project description (defaults to 'New React project')"
+  },
+
+  author: {
+    alias: "a",
+    describe: "Optional author name (defaults to '')"
+  },
+
+  license: {
+    alias: "l",
+    describe: "Optional license for project"
+  },
+
+  repo: {
+    alias: "r",
+    describe:
+      "Optional Git repo URL - will push project to this repo on creation"
+  },
+
+  noprecommit: {
+    describe:
+      "Don't use the pre-commit hook for linting, formatting, and testing"
+  },
+
+  yarn: {
+    alias: "useyarn",
+    describe: "Use Yarn package manager instead of NPM"
   }
-};
-
-const spinner = ora();
-
-const handleCreateStagingDir = async () => {
-  spinner.start();
-
-  try {
-    await createStagingDir();
-  } catch (err) {
-    danger(err);
-    // throw err;
-  } finally {
-    spinner.stop();
-  }
-
-  return await null;
-};
-
-const handleCloneTemplateRepo = async () => {
-  spinner.start();
-
-  try {
-    await cloneTemplateRepo();
-  } catch (err) {
-    danger(err);
-    // throw err;
-  } finally {
-    spinner.stop();
-  }
-
-  return await null;
-};
-
-const handleMoveTemplateToProjectDir = async dir => {
-  spinner.start();
-
-  try {
-    await moveTemplateToProjectDir(dir);
-  } catch (err) {
-    danger(err);
-    // throw err;
-  } finally {
-    spinner.stop;
-  }
-
-  return await null;
-};
-
-const exec = async argv => {
-  const projName = argv.name || argv.directory;
-  const initVersion = argv.initial || "1.0.0";
-
-  clear();
-  notice(figlet.textSync("YARB-CLI"));
-  log(
-    `Creating ${projName} with initial version ${initVersion} in ${argv.directory}...`
-  );
-
-  info("Creating temp directory for staging...");
-  await handleCreateStagingDir();
-
-  info("Getting template repository...");
-  await handleCloneTemplateRepo();
-
-  info("Copying template into project directory...");
-  await handleMoveTemplateToProjectDir(argv.directory);
 };
 
 const handler = argv => {
   info("Creating new YARB project...");
   setTimeout(
     () =>
-      exec(argv)
-        .then(() => {
-          log(figlet.textSync("Project created!"));
+      init(argv)
+        .then(msg => {
+          log(figlet.textSync(msg));
         })
         .catch(err => danger(err))
         .finally(() => {
-          spinner.stop();
           rm("-rf", join(__dirname, "../../staging/"));
         }),
     1000
