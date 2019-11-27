@@ -26,8 +26,9 @@ const installDeps = pm => {
 };
 
 const makeInitialCommit = () => {
+  console.log(projectPath);
   exec(
-    `cd ${projectPath} && git add -A && git commit -m --no-verify "Initial commit from YARB-CLI"`
+    `cd ${projectPath} && git add -A && git commit --no-verify -m "Initial commit from Yarb-CLI"`
   );
 };
 
