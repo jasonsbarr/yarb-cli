@@ -153,33 +153,42 @@ module.exports = async ({
 
   info("Moving files to project directory...");
   await handleMoveTemplateToProjectDir(directory);
+  info("Done");
 
   // Final setup steps
   // set project path
   setProjectPath(directory);
   // initialize new Git repo
+  info("Initializing new Git repo...");
   initNewRepo();
+  info("Done");
   // set remote, if any
   if (projRepo) {
+    info(`Setting remote origin to ${projRepo}...`);
     setGitRemote(projRepo);
+    info("Done");
   }
 
   // - set preferred package manager
-  info(`Setting package manager to ${pm}`);
+  info(`Setting package manager to ${pm}...`);
+  info("Done");
 
   // install dependencies with preferred package manager
   info(`Installing dependencies with ${pm}...`);
   notice("(This could take a while)");
   installDeps(pm);
+  info("Done");
 
   // make initial commit
   info("Making initial commit to Git repo...");
   makeInitialCommit();
+  info("Done");
 
   // push to remote, if any
-  info(`Pushing initial commit to ${projRepo}`);
   if (projRepo) {
+    info(`Pushing initial commit to ${projRepo}`);
     pushToRemote();
+    info("Done");
   }
 
   return await "Project created!";
