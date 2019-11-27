@@ -19,6 +19,9 @@
     "CLI",
     "boilerplate"
   ],
+  "engines": {
+    "node": ">= 10.0.0"
+  },
   "author": "Jason Barr <me@jasonbarr.dev>",
   "license": "MIT",
   "bugs": {
