@@ -54,6 +54,26 @@ const writePackageFile = () => {
   );
 };
 
+const setReadme = pm => {
+  const readme = fs.readFileSync(
+    join(templatePath, "README.md"),
+    "utf8"
+  );
+  const readmeWithPm =
+    pm === "yarn"
+      ? readme.replace(/(npm run |npm )/g, "yarn ")
+      : readme;
+  const newReadme =
+    "Project bootstrapped with [Yet Another React Boilerplate](https://github.com/jasonsbarr/yet-another-react-boilerplate)\n\n" +
+    readmeWithPm;
+
+  fs.writeFileSync(
+    join(templatePath, "README.md"),
+    newReadme,
+    "utf8"
+  );
+};
+
 module.exports = {
   setPackageProperty,
   setMainEntry,
@@ -61,5 +81,6 @@ module.exports = {
   setBrowsersList,
   setRepo,
   setPrecommitHook,
-  writePackageFile
+  writePackageFile,
+  setReadme
 };

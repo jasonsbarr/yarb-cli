@@ -108,7 +108,8 @@ module.exports = async ({
     setBrowsersList,
     setRepo,
     setPrecommitHook,
-    writePackageFile
+    writePackageFile,
+    setReadme
   } = require("../../lib/modules/package");
 
   // set project info:
@@ -151,6 +152,16 @@ module.exports = async ({
   writePackageFile();
   info("Done");
 
+  // - set preferred package manager
+  info(`Setting package manager to ${pm}...`);
+  info("Done");
+
+  // modify README.md based on package manager
+  info("Writing README.md...");
+  setReadme(pm);
+  info("Done");
+
+  // move project files from staging to project directory
   info("Moving files to project directory...");
   await handleMoveTemplateToProjectDir(directory);
   info("Done");
@@ -168,10 +179,6 @@ module.exports = async ({
     setGitRemote(projRepo);
     info("Done");
   }
-
-  // - set preferred package manager
-  info(`Setting package manager to ${pm}...`);
-  info("Done");
 
   // install dependencies with preferred package manager
   info(`Installing dependencies with ${pm}...`);
