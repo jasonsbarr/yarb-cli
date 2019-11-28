@@ -1,6 +1,6 @@
 # YARB CLI
 
-Create React apps using [Yet Another React Boilerplate](https://github.com/jasonsbarr/yet-another-react-boilerplate) with a simple, command line interface.
+Create React apps using [Yet Another React Boilerplate](https://github.com/jasonsbarr/yet-another-react-boilerplate) with a simple command line interface.
 
 This gives you a fully-functional React setup with development and production builds, a built-in dev server, testing, linting, and formatting scripts, a pre-commit hook to ensure code quality, simple, modular state management, and much more.
 
@@ -23,7 +23,7 @@ No complicated setup plus the ability to change any configuration options you wa
 Create an app in `[current working directory]/<directory>`:
 
 ```bash
-yarb create <directory>
+yarb-cli create <directory>
 ```
 
 `<directory>` is required. All other arguments are optional.
@@ -44,19 +44,17 @@ Options without a default will _not_ be added to `package.json`.
 
 ## CLI tool installation
 
-This tool is not _yet_ published to NPM as an installable package, though I hope to do that soon. For now, follow these steps:
+Install as a global package with NPM:
 
-1. Clone the repo into a suitable directory on your local machine: `git clone https://github.com/jasonsbarr/yarb-cli.git`
-2. `cd yarb-cli`
-3. `npm link`
+`npm install -g yarb-cli`
 
-To unlink this version from your local machine `PATH`, e.g. when I do publish this to NPM, go to the package installation directory and run `npm unlink`.
+Or with Yarn:
 
-Honestly you should probably just wait until I have it on NPM.
+`yarn -g yarb-cli`
 
 ## Project installation overview
 
-After you run `yarb create`, the script takes care of the following steps for you:
+After you run `yarb-cli create`, the script takes care of the following steps for you:
 
 1. Downloading the project template files and config
 2. Creating a new `package.json` based on the options you passed in

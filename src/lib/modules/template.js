@@ -18,6 +18,13 @@ const removeOldGitFiles = async () => {
 };
 
 const moveTemplateToProjectDir = async dirName => {
+  // Remove license file so we don't accidentally
+  // release someone's code under MIT license
+  // when that's not what they want
+  await rm(`${stagingPath}template/LICENSE`);
+  // Remove package-lock.json so they can use whichever
+  // package manager they prefer
+  await rm(`${stagingPath}template/package-lock.json`);
   await mv(`${stagingPath}template/`, `${workingDir}/${dirName}`);
 };
 

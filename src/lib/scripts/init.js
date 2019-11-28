@@ -1,5 +1,6 @@
 const clear = require("clear");
 const figlet = require("figlet");
+const chalk = require("chalk");
 // const ora = require("ora");
 const { createStagingDir } = require("../../lib/modules/staging");
 const {
@@ -198,5 +199,32 @@ module.exports = async ({
     info("Done");
   }
 
-  return await "Project created!";
+  figlet.textSync("YARB project created!");
+
+  const pmCommand = pm === "yarn" ? "yarn" : "npm run";
+
+  // prettier-ignore
+  const doneMsg = `
+    ${chalk.green(`Created ${projName} in ${directory}.`)}
+
+    Inside that directory, you can run several commands:
+
+    ${chalk.cyan.bold(`${pm} start`)} starts the development server. It will reload your project automatically when you make changes to files in ${chalk.yellow(`${directory}/src/`)}.
+
+    ${chalk.cyan.bold(`${pmCommand} build`)} generates a production build with optimized code and assets.
+
+    ${chalk.cyan.bold(`${pm} test`)} starts the test runner, which will automatically run tests for changed files as you make edits.
+
+    There are also other test options, as well as scripts for linting and formatting your code. See README.md in the project directory for more information.
+
+    If any of the default configuration isn't to your liking, you can just change it!
+
+    It's that simple. There's no need to run an eject script or do anything else. All the config is there for you to see and edit as you want.
+
+    I suggest you get started on your project by typing ${chalk.cyan.bold(`cd ${directory}`)} to go into your project directory, opening it in your favorite editor/IDE, and then starting the development server with ${chalk.cyan.bold(`${pm} start`)}.
+
+    ${chalk.bgBlue.bold("Happy coding!")}
+  `;
+
+  return doneMsg;
 };

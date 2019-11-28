@@ -1,6 +1,5 @@
 "use strict";
 const { join } = require("path");
-const figlet = require("figlet");
 const { rm } = require("shelljs");
 const init = require("../lib/scripts/init");
 const { log, info, danger } = require("../lib/utils/color-logs");
@@ -54,9 +53,7 @@ const handler = argv => {
   setTimeout(
     () =>
       init(argv)
-        .then(msg => {
-          log(figlet.textSync(msg));
-        })
+        .then(msg => console.log(msg))
         .catch(err => danger(err))
         .finally(() => {
           rm("-rf", join(__dirname, "../../staging/"));
