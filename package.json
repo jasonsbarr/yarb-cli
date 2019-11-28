@@ -4,7 +4,7 @@
   "description": "CLI tool for Yet Another React Boilerplate",
   "main": "index.js",
   "bin": {
-    "yarb": "bin/yarb"
+    "yarb-cli": "bin/yarb"
   },
   "scripts": {
     "test": "jest",
