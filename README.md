@@ -28,7 +28,7 @@ yarb create <directory>
 
 `<directory>` is required. All other arguments are optional.
 
-### Arguments
+### Options
 
 Options without a default will _not_ be added to `package.json`.
 
@@ -66,55 +66,6 @@ After you run `yarb create`, the script takes care of the following steps for yo
 6. Making an initial Git commit
 7. Pushing the initial commit to `origin master` if you provided a remote URL
 
-## Included scripts
-
-Here are the included scripts you can use after installation and their provided options
-
-### Start
-
-Starts the dev server with live reload when you make a change to the code.
-
-Run with `npm start` or `yarn start`.
-
-### Build
-
-Makes a production build, complete with optimized assets including responsive images for devices with different viewport sizes and pixel densities.
-
-Run with `npm run build` or `yarn build`.
-
-### Lint
-
-Runs one or both of:
-
-- ESLint on your JS/JSX code
-- Stylelint on your CSS/SCSS and CSS-in-JS
-
-Use `npm run lint:css` or `yarn run lint:css` to lint styles.
-
-Use `npm run lint:js` or `yarn run lint:js` to lint your JS/JSX.
-
-Use `npm run lint:all` or `yarn run lint:all` to lint everything.
-
-### Format
-
-Uses Prettier to format JS/JSX.
-
-Run with `npm run format` or `yarn run format`.
-
-### Test
-
-Uses Jest and React Testing Library to run your tests.
-
-Use `npm test` or `yarn test` to run all tests once.
-
-Use `npm test:watch` or `yarn test:watch` to watch for file changes and then run only the tests for changed files.
-
-Use `npm test:all` or `yarn test:all` to watch for file changes and then run _all_ tests on each change.
-
-Use `npm test:update` or `yarn test:update` to update tests, including snapshots, and then run all tests.
-
-Use `npm test:coverage` or `yarn test:coverage` to generate coverage statistics for your test suite.
-
 ## Requirements
 
 You'll need to have Node **v10 or later** installed on your development machine, though it's not required on the server.
@@ -126,7 +77,8 @@ You'll need to have Node **v10 or later** installed on your development machine,
 - Add CSS/SCSS modules to boilerplate
 - Publish to NPM
 - Add interactive project setup process
-- Ability to generate new components
+- Add ability to generate new components
+- Add ability to run scripts through Yarb, not just directly with NPM/Yarn
 
 ## Contributing
 
@@ -134,7 +86,7 @@ Simply submit a PR and let's talk! If you have an idea but not a fully-formed co
 
 ## Author
 
-Jason Barr (jason@jasonsbarr.com)
+Jason Barr (me@jasonbarr.dev)
 
 ## Copyright and license info
 
