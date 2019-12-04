@@ -47,6 +47,8 @@ const setPrecommitHook = useHook => {
   }
 };
 
+const setPrivate = () => setPackageProperty("private")(true);
+
 const writePackageFile = () => {
   fs.writeFileSync(
     join(templatePath, "package.json"),
@@ -81,6 +83,7 @@ module.exports = {
   setBrowsersList,
   setRepo,
   setPrecommitHook,
+  setPrivate,
   writePackageFile,
   setReadme
 };

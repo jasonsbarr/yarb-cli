@@ -45,6 +45,12 @@ const builder = {
 
   yarn: {
     describe: "Use Yarn package manager instead of NPM"
+  },
+
+  private: {
+    alias: "p",
+    describe:
+      "Make project private to prevent accidental publishing to NPM"
   }
 };
 

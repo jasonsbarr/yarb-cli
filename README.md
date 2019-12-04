@@ -73,10 +73,9 @@ You'll need to have Node **v10 or later** installed on your development machine,
 - Further testing
 - Make changes to boilerplate files as needed
 - Add CSS/SCSS modules to boilerplate
-- Publish to NPM
 - Add interactive project setup process
 - Add ability to generate new components
-- Add ability to run scripts through Yarb, not just directly with NPM/Yarn
+- Add ability to run scripts through Yarb-CLI, not just directly with NPM/Yarn
 
 ## Contributing
 
