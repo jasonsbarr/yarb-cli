@@ -77,7 +77,8 @@ module.exports = async ({
   license,
   repo,
   noprecommit,
-  yarn
+  yarn,
+  private
 }) => {
   const projName = name || directory;
   const initVersion = initial || "1.0.0";
@@ -109,6 +110,7 @@ module.exports = async ({
     setBrowsersList,
     setRepo,
     setPrecommitHook,
+    setPrivate,
     writePackageFile,
     setReadme
   } = require("../../lib/modules/package");
@@ -148,6 +150,14 @@ module.exports = async ({
   // - use pre-commit hook?
   setPrecommitHook(preCommitHook);
   info("Done");
+
+  // If private flag set, set project to private
+  if (private) {
+    info("Making project private...");
+    setPrivate();
+    info("Done");
+  }
+
   // - write settings to package.json
   info("Writing package.json to project...");
   writePackageFile();
