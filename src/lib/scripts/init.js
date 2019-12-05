@@ -5,6 +5,9 @@ const chalk = require("chalk");
 const { createStagingDir } = require("../../lib/modules/staging");
 const {
   cloneTemplateRepo,
+  removeOldLicense,
+  removeOldPackageJson,
+  generateNewLicense,
   moveTemplateToProjectDir,
   removeOldGitFiles
 } = require("../../lib/modules/template");
@@ -80,10 +83,10 @@ module.exports = async ({
   yarn,
   private
 }) => {
+  const projAuthor = author;
   const projName = name || directory;
   const initVersion = initial || "1.0.0";
   const projDesc = description || "New React project";
-  const projAuthor = author || "";
   const projLicense = license || "";
   const projRepo = repo || "";
   const preCommitHook = !noprecommit;
@@ -101,7 +104,10 @@ module.exports = async ({
   info("Getting template repository...");
   await handleCloneTemplateRepo();
 
+  // Clean up template files
   removeOldGitFiles();
+  removeOldLicense();
+  removeOldPackageJson();
 
   const {
     setPackageProperty,
@@ -135,6 +141,9 @@ module.exports = async ({
   if (projLicense) {
     info(`License: ${projLicense}`);
     setPackageProperty("license")(projLicense);
+    info("Generating license file...");
+    await generateNewLicense(projAuthor, projLicense);
+    info("Done");
   }
   // - project repo
   if (projRepo) {
