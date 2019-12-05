@@ -1,6 +1,6 @@
 {
   "name": "yarb-cli",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "CLI tool for Yet Another React Boilerplate",
   "main": "index.js",
   "bin": {
@@ -33,6 +33,7 @@
     "clear": "^0.1.0",
     "figlet": "^1.2.4",
     "inquirer": "^7.0.0",
+    "license": "0.0.3",
     "ora": "^4.0.3",
     "shelljs": "^0.8.3",
     "yargs": "^15.0.2"

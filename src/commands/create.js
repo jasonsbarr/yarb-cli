@@ -2,14 +2,16 @@
 const { join } = require("path");
 const { rm } = require("shelljs");
 const init = require("../lib/scripts/init");
-const { log, info, danger } = require("../lib/utils/color-logs");
+const { info, danger } = require("../lib/utils/color-logs");
 
 const command = "create <directory>";
-const describe = "Creates new YARB project in <directory>";
+const describe =
+  "Creates new YARB project in <directory>\nRunning this command without options launches an interactive prompt.";
 const builder = {
   name: {
     alias: "n",
-    describe: "Optional project name (defaults to directory name)"
+    describe:
+      "Optional project name (defaults to directory name)\nMust be all lowercase letters with words separated by dashes or underscores (no spaces)"
   },
 
   initial: {
@@ -24,38 +26,43 @@ const builder = {
 
   author: {
     alias: "a",
-    describe: "Optional author name (defaults to '')"
+    describe:
+      "Optional project author name (must be in quotation marks)"
   },
 
   license: {
     alias: "l",
-    describe: "Optional license for project"
+    describe:
+      "Optional license for project (must be a valid SPDX license identifier, e.g. MIT)"
   },
 
   repo: {
     alias: "r",
     describe:
-      "Optional Git repo URL - will push project to this repo on creation"
+      "Optional Git repo URL (script will push project to this repo when finished)"
   },
 
   noprecommit: {
     describe:
-      "Don't use the pre-commit hook for linting, formatting, and testing"
+      "Don't use the pre-commit hook for linting, formatting, and testing (We VERY HIGHLY recommend you use it)",
+    boolean: true
   },
 
   yarn: {
-    describe: "Use Yarn package manager instead of NPM"
+    describe: "Use Yarn package manager instead of NPM",
+    boolean: true
   },
 
   private: {
     alias: "p",
     describe:
-      "Make project private to prevent accidental publishing to NPM"
+      "Make project private to prevent accidental publishing to NPM",
+    boolean: true
   }
 };
 
 const handler = argv => {
-  info("Creating new YARB project...");
+  info("Initializing new YARB project...");
   setTimeout(
     () =>
       init(argv)
