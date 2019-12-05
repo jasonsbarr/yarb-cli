@@ -7,6 +7,12 @@ const { log, info, danger } = require("../lib/utils/color-logs");
 const command = "create <directory>";
 const describe = "Creates new YARB project in <directory>";
 const builder = {
+  author: {
+    alias: "a",
+    describe: "Project author name",
+    demandOption: true
+  },
+
   name: {
     alias: "n",
     describe: "Optional project name (defaults to directory name)"
@@ -22,11 +28,6 @@ const builder = {
       "Optional project description (defaults to 'New React project')"
   },
 
-  author: {
-    alias: "a",
-    describe: "Optional author name (defaults to '')"
-  },
-
   license: {
     alias: "l",
     describe: "Optional license for project"
@@ -40,17 +41,20 @@ const builder = {
 
   noprecommit: {
     describe:
-      "Don't use the pre-commit hook for linting, formatting, and testing"
+      "Don't use the pre-commit hook for linting, formatting, and testing",
+    boolean: true
   },
 
   yarn: {
-    describe: "Use Yarn package manager instead of NPM"
+    describe: "Use Yarn package manager instead of NPM",
+    boolean: true
   },
 
   private: {
     alias: "p",
     describe:
-      "Make project private to prevent accidental publishing to NPM"
+      "Make project private to prevent accidental publishing to NPM",
+    boolean: true
   }
 };
 
