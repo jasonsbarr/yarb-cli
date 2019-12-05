@@ -2,14 +2,14 @@
 const { join } = require("path");
 const { rm } = require("shelljs");
 const init = require("../lib/scripts/init");
-const { log, info, danger } = require("../lib/utils/color-logs");
+const { info, danger } = require("../lib/utils/color-logs");
 
 const command = "create <directory>";
 const describe = "Creates new YARB project in <directory>";
 const builder = {
   author: {
     alias: "a",
-    describe: "Project author name",
+    describe: "Project author name (must be in quotation marks)",
     demandOption: true
   },
 
@@ -30,7 +30,8 @@ const builder = {
 
   license: {
     alias: "l",
-    describe: "Optional license for project"
+    describe:
+      "Optional license for project (must be a valid SPDX license identifier, e.g. MIT)"
   },
 
   repo: {
