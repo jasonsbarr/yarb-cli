@@ -5,17 +5,13 @@ const init = require("../lib/scripts/init");
 const { info, danger } = require("../lib/utils/color-logs");
 
 const command = "create <directory>";
-const describe = "Creates new YARB project in <directory>";
+const describe =
+  "Creates new YARB project in <directory>\nRunning this command without options launches an interactive prompt.";
 const builder = {
-  author: {
-    alias: "a",
-    describe: "Project author name (must be in quotation marks)",
-    demandOption: true
-  },
-
   name: {
     alias: "n",
-    describe: "Optional project name (defaults to directory name)"
+    describe:
+      "Optional project name (defaults to directory name)\nMust be all lowercase letters with words separated by dashes or underscores (no spaces)"
   },
 
   initial: {
@@ -28,6 +24,12 @@ const builder = {
       "Optional project description (defaults to 'New React project')"
   },
 
+  author: {
+    alias: "a",
+    describe:
+      "Optional project author name (must be in quotation marks)"
+  },
+
   license: {
     alias: "l",
     describe:
@@ -37,12 +39,12 @@ const builder = {
   repo: {
     alias: "r",
     describe:
-      "Optional Git repo URL - will push project to this repo on creation"
+      "Optional Git repo URL (script will push project to this repo when finished)"
   },
 
   noprecommit: {
     describe:
-      "Don't use the pre-commit hook for linting, formatting, and testing",
+      "Don't use the pre-commit hook for linting, formatting, and testing (We VERY HIGHLY recommend you use it)",
     boolean: true
   },
 
@@ -60,7 +62,7 @@ const builder = {
 };
 
 const handler = argv => {
-  info("Creating new YARB project...");
+  info("Initializing new YARB project...");
   setTimeout(
     () =>
       init(argv)

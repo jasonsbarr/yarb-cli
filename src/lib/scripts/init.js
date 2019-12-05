@@ -25,6 +25,7 @@ const {
   notice,
   danger
 } = require("../../lib/utils/color-logs");
+const prompt = require("../modules/interactive_create");
 
 const handleCreateStagingDir = async () => {
   // spinner.start();
@@ -71,31 +72,33 @@ const handleMoveTemplateToProjectDir = async dir => {
   return await null;
 };
 
-module.exports = async ({
-  directory,
-  name,
-  initial,
-  description,
-  author,
-  license,
-  repo,
-  noprecommit,
-  yarn,
-  private
-}) => {
-  const projAuthor = author;
-  const projName = name || directory;
-  const initVersion = initial || "1.0.0";
-  const projDesc = description || "New React project";
-  const projLicense = license || "";
-  const projRepo = repo || "";
-  const preCommitHook = !noprecommit;
-  const pm = yarn ? "yarn" : "npm";
+module.exports = async args => {
+  const projDir = args.directory;
+  let answers = {};
+
+  // Check if command was called with no flags
+  // If so, launch interactive prompt
+
+  if (Object.keys(args).length === 3) {
+    clear();
+    answers = await prompt({ directory: projDir });
+  }
+
+  const projName = args.name || answers.name || projDir;
+  const initVersion = args.initial || answers.initial || "v1.0.0";
+  const projDesc =
+    args.description || answers.description || "New React Project";
+  const projAuthor = args.author || answers.author || "";
+  const projLicense = args.license || answers.license || "";
+  const projRepo = args.repo || answers.repo || "";
+  const preCommitHook = !args.noprecommit || answers.precommit;
+  const pm = args.yarn || answers.yarn ? "yarn" : "npm";
+  const projPriv = args.private || answers.private;
 
   clear();
   notice(figlet.textSync("YARB-CLI"));
   log(
-    `Creating ${projName} with initial version ${initVersion} in ${directory}...`
+    `Creating ${projName} with initial version ${initVersion} in ${projDir}...`
   );
 
   info("Creating temp directory...");
@@ -160,7 +163,7 @@ module.exports = async ({
   info("Done");
 
   // If private flag set, set project to private
-  if (private) {
+  if (projPriv) {
     info("Making project private...");
     setPrivate();
     info("Done");
@@ -182,12 +185,12 @@ module.exports = async ({
 
   // move project files from staging to project directory
   info("Moving files to project directory...");
-  await handleMoveTemplateToProjectDir(directory);
+  await handleMoveTemplateToProjectDir(projDir);
   info("Done");
 
   // Final setup steps
   // set project path
-  setProjectPath(directory);
+  setProjectPath(projDir);
   // initialize new Git repo
   info("Initializing new Git repo...");
   initNewRepo();
@@ -223,12 +226,12 @@ module.exports = async ({
 
   // prettier-ignore
   const doneMsg = `
-    ${chalk.green(`Created ${projName} in ${directory}.`)}
+    ${chalk.green(`Created ${projName} in ${projDir}.`)}
 
     Inside that directory, you can run several commands:
 
     ${chalk.cyan.bold(`${pm} start`)} starts the development server. It will reload your
-    project automatically when you make changes to files in ${chalk.yellow(`${directory}/src/`)}.
+    project automatically when you make changes to files in ${chalk.yellow(`${projDir}/src/`)}.
 
     ${chalk.cyan.bold(`${pmCommand} build`)} generates a production build with optimized code and assets.
 
@@ -245,7 +248,7 @@ module.exports = async ({
     It's that simple. There's no need to run an eject script or do anything else. All
     the config is there for you to see and edit as you want.
 
-    I suggest you get started on your project by typing ${chalk.cyan.bold(`cd ${directory}`)}
+    I suggest you get started on your project by typing ${chalk.cyan.bold(`cd ${projDir}`)}
     to go into your project directory, opening it in your favorite editor/IDE,
     and then starting the development server with ${chalk.cyan.bold(`${pm} start`)}.
 
