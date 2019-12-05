@@ -1,6 +1,6 @@
 # YARB CLI
 
-Create React apps using [Yet Another React Boilerplate](https://github.com/jasonsbarr/yet-another-react-boilerplate) with a simple command line interface.
+Create React apps using [Yet Another React Boilerplate](https://github.com/jasonsbarr/yet-another-react-boilerplate) with a simple command line interface and an optional interactive prompt to help set up your project.
 
 This gives you a fully-functional React setup with development and production builds, a built-in dev server, testing, linting, and formatting scripts, a pre-commit hook to ensure code quality, simple, modular state management, and much more.
 
@@ -23,10 +23,10 @@ No complicated setup plus the ability to change any configuration options you wa
 Create an app in `[current working directory]/<directory>`:
 
 ```bash
-yarb-cli create <directory>
+yarb-cli create <directory> [options]
 ```
 
-`<directory>` is required. All other arguments are optional.
+`<directory>` is the only required argument. If you invoke the command with no other options it will launch an interactive prompt to help you configure your project.
 
 ### Options
 
@@ -54,7 +54,7 @@ Or with Yarn:
 
 ## Project installation overview
 
-After you run `yarb-cli create`, the script takes care of the following steps for you:
+After you run `create`, the script takes care of the following steps for you:
 
 1. Downloading the project template files and config
 2. Creating a new `package.json` based on the options you passed in
@@ -70,10 +70,6 @@ You'll need to have Node **v10 or later** installed on your development machine,
 
 ## Roadmap
 
-- Further testing
-- Make changes to boilerplate files as needed
-- Add CSS/SCSS modules to boilerplate
-- Add interactive project setup process
 - Add ability to generate new components
 - Add ability to run scripts through Yarb-CLI, not just directly with NPM/Yarn
 
