@@ -7,7 +7,8 @@ const prompt = async ({ directory }) => {
     {
       type: "input",
       name: "name",
-      message: "Project name:",
+      message:
+        "Project name (must contain ONLY lowercase letters, dashes, and underscores):",
       default: directory
     },
     {
