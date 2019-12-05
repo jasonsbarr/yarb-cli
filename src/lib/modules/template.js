@@ -4,6 +4,7 @@ const { mv, rm } = require("shelljs");
 
 const templateUrl =
   "https://github.com/jasonsbarr/yet-another-react-boilerplate.git";
+const cliPath = join(__dirname, "../../../");
 const stagingPath = join(__dirname, "../../../staging/");
 const workingDir = process.cwd();
 
@@ -30,9 +31,9 @@ const removeOldPackageJson = async () => {
   await rm(`${stagingPath}template/package-lock.json`);
 };
 
-const generateNewLicense = async (author, licenseName) => {
+const generateNewLicense = async (project, author, licenseName) => {
   exec(
-    `license ${licenseName} -o "${author}" -y ${new Date().getFullYear()} > ${stagingPath}template/LICENSE`,
+    `${cliPath}node_modules/.bin/license ${licenseName} -o "${author}" -y ${new Date().getFullYear()} > ${stagingPath}template/LICENSE`,
     {
       stdio: "inherit"
     }

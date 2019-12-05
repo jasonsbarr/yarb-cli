@@ -142,7 +142,7 @@ module.exports = async ({
     info(`License: ${projLicense}`);
     setPackageProperty("license")(projLicense);
     info("Generating license file...");
-    await generateNewLicense(projAuthor, projLicense);
+    await generateNewLicense(projName, projAuthor, projLicense);
     info("Done");
   }
   // - project repo
