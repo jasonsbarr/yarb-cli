@@ -189,7 +189,6 @@ module.exports = async args => {
   info("Moving files to project directory...");
   await handleMoveTemplateToProjectDir(projDir);
   info("Done");
-  process.exit(0);
 
   // Final setup steps
   // set project path
