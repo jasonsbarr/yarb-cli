@@ -41,6 +41,7 @@ Options without a default will _not_ be added to `package.json`.
   - If you give it a value for this option, the init script will push the newly-installed project to your repo's `master` branch
 - `--noprecommit`: disable the default pre-commit hook, which runs ESLint, Stylelint, and Prettier on staged files before committing
 - `--yarn`: use Yarn for your package manager instead of NPM
+- `--private`: make project private in `package.json` so it won't accidentally get published to NPM
 
 ## CLI tool installation
 
