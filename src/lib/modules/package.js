@@ -23,6 +23,10 @@ const setRepo = url => {
   });
 };
 
+const setScripts = () => {
+  setPackageProperty("scripts")(templatePackageJson.scripts);
+};
+
 const setDependencies = () => {
   setPackageProperty("dependencies")(
     templatePackageJson.dependencies
@@ -82,6 +86,7 @@ module.exports = {
   setDependencies,
   setBrowsersList,
   setRepo,
+  setScripts,
   setPrecommitHook,
   setPrivate,
   writePackageFile,

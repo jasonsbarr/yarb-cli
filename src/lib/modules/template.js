@@ -25,7 +25,7 @@ const removeOldLicense = async () => {
   await rm(`${stagingPath}template/LICENSE`);
 };
 
-const removeOldPackageJson = async () => {
+const removeOldPackageLock = async () => {
   // Remove package-lock.json so they can use whichever
   // package manager they prefer
   await rm(`${stagingPath}template/package-lock.json`);
@@ -48,7 +48,7 @@ module.exports = {
   cloneTemplateRepo,
   removeOldGitFiles,
   removeOldLicense,
-  removeOldPackageJson,
+  removeOldPackageLock,
   generateNewLicense,
   moveTemplateToProjectDir
 };

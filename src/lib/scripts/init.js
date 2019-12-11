@@ -6,7 +6,7 @@ const { createStagingDir } = require("../../lib/modules/staging");
 const {
   cloneTemplateRepo,
   removeOldLicense,
-  removeOldPackageJson,
+  removeOldPackageLock,
   generateNewLicense,
   moveTemplateToProjectDir,
   removeOldGitFiles
@@ -110,7 +110,7 @@ module.exports = async args => {
   // Clean up template files
   removeOldGitFiles();
   removeOldLicense();
-  removeOldPackageJson();
+  removeOldPackageLock();
 
   const {
     setPackageProperty,
@@ -118,6 +118,7 @@ module.exports = async args => {
     setDependencies,
     setBrowsersList,
     setRepo,
+    setScripts,
     setPrecommitHook,
     setPrivate,
     writePackageFile,
@@ -155,6 +156,7 @@ module.exports = async args => {
   }
   // - dependencies
   info("Setting dependencies and scripts...");
+  setScripts();
   setDependencies();
   // - browserslist
   setBrowsersList();
