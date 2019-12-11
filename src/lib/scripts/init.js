@@ -118,6 +118,7 @@ module.exports = async args => {
     setDependencies,
     setBrowsersList,
     setRepo,
+    setScripts,
     setPrecommitHook,
     setPrivate,
     writePackageFile,
@@ -155,6 +156,7 @@ module.exports = async args => {
   }
   // - dependencies
   info("Setting dependencies and scripts...");
+  setScripts();
   setDependencies();
   // - browserslist
   setBrowsersList();
@@ -187,6 +189,7 @@ module.exports = async args => {
   info("Moving files to project directory...");
   await handleMoveTemplateToProjectDir(projDir);
   info("Done");
+  process.exit(0);
 
   // Final setup steps
   // set project path
