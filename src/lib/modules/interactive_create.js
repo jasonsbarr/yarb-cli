@@ -56,7 +56,7 @@ const prompt = async ({ directory }) => {
     },
     {
       type: "list",
-      name: "pm_yarn",
+      name: "yarn",
       message: "Which package manager will you be using?",
       choices: ["NPM", "Yarn"],
       filter: input => input === "Yarn"
