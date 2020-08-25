@@ -28,7 +28,11 @@ Create an app in `[current working directory]/<directory>`:
 yarb-cli create <directory> [options]
 ```
 
-`<directory>` is the only required argument. If you invoke the command with no other options it will launch an interactive prompt to help you configure your project.
+`<directory>` is the only required argument.
+
+### Interactive prompt
+
+If you invoke the command with no other options it will launch an interactive prompt to help you configure your project.
 
 ### Options
 
